@@ -7,7 +7,7 @@
         "dev": "nodemon"
     },
     "keywords": [],
-    "author": "",
+    "author": "Daan Schenkel",
     "license": "ISC",
     "dependencies": {
         "cookie-parser": "^1.4.6",
