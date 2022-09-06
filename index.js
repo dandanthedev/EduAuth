@@ -573,7 +573,7 @@ app.get('/authenticate/', function(req, res) {
     db.get("SELECT * FROM uuids WHERE uuid = ?", decodedString, function(err, row) {
         if (err) {
             console.log(err);
-            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + decodedString + "</b>";
+            var message = "Er ging iets fout, probeer het opnieuw.";
             res.render("error.html", { message: message });
         } else {
             if (row) {
@@ -585,7 +585,7 @@ app.get('/authenticate/', function(req, res) {
                 db.get("SELECT * FROM providers WHERE name = ?", provider, function(err, row) {
                     if (err) {
                         console.log(err);
-                        var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + uuid + "</b>";
+                        var message = "Kon provider niet vinden in database. Probeer het opnieuw.";
                         res.render("error.html", { message: message });
                     } else {
                         if (row) {
