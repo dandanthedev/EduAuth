@@ -561,21 +561,17 @@ app.get('/logout/:base64', function(req, res) {
     });
 
 });
-app.get("/authenticate", function(req, res) {
-    var message = "Sessie-id niet gevonden."
-    res.render("error.html", { message: message });
-});
+
 //authenticate route
-app.get('/authenticate/:uuid', function(req, res) {
-    var base64 = req.params.uuid;
-    var decodedString = Base64.decode(base64);
+app.get('/authenticate/', function(req, res) {
+    var decodedString = req.signedCookies.uuid;
     var upfail = req.session.messages;
     req.session.messages = "";
     //get uuid from database
     db.get("SELECT * FROM uuids WHERE uuid = ?", decodedString, function(err, row) {
         if (err) {
             console.log(err);
-            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + decodedString + "</b>";
+            var message = "Oeps, er ging iets niet helemaal goed, Probeer het later opnieuw!";
             res.render("error.html", { message: message });
         } else {
             if (row) {
