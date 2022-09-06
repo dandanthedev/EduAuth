@@ -471,7 +471,7 @@ app.post('/handshake', function(req, res) {
     db.get("SELECT * FROM providers WHERE name = ?", provider, function(err, row) {
         if (err) {
             console.log(err);
-            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + uuid + "</b>";
+            var message = "Oeps, er ging iets niet helemaal goed, Probeer het later opnieuw!";
             res.render("error.html", { message: message });
         } else {
             if (row) {
@@ -481,7 +481,7 @@ app.post('/handshake', function(req, res) {
                     db.run("INSERT INTO uuids (uuid, provider, redirect, env) VALUES (?, ?, ?, ?)", uuid, provider, redirect, env, function(err) {
                         if (err) {
                             console.log(err);
-                            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + uuid + "</b>";
+                            var message = "Oeps, er ging iets niet helemaal goed, Probeer het later opnieuw!";
                             res.render("error.html", { message: message });
                         } else {
 
@@ -495,9 +495,10 @@ app.post('/handshake', function(req, res) {
                             res.cookie('uuid', uuid, options) // options is optional
 
                             //encode and redirect to authenticate route
-                            var message = "Sessie wordt gestart!<br><noscript>Javascript moet aanstaan om het inlogproces te starten!</noscript><script>window.location.href = '/authenticate/'</script>";
-                            res.render("error.html", { message: message });
-                            // res.redirect("/authenticate/" + encodedString);
+                            var encodedString = Base64.encode(uuid);
+
+                            //redirect to auth
+                            res.redirect("/authenticate/");
                         }
                     });
 
@@ -531,7 +532,7 @@ app.get('/logout/:base64', function(req, res) {
     db.get("SELECT * FROM providers WHERE name = ?", provider, function(err, row) {
         if (err) {
             console.log(err);
-            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + uuid + "</b>";
+            var message = "Oeps, er ging iets niet helemaal goed, Probeer het later opnieuw!";
             res.render("error.html", { message: message });
         } else {
             if (row) {
@@ -560,20 +561,21 @@ app.get('/logout/:base64', function(req, res) {
     });
 
 });
+app.get("/authenticate", function(req, res) {
+    var message = "Sessie-id niet gevonden."
+    res.render("error.html", { message: message });
+});
 //authenticate route
-app.get('/authenticate/', function(req, res) {
-    decodedString = req.signedCookies.uuid;
-    if (!decodedString) {
-        var message = "De cookie is verlopen. Controleer of je cookies accepteert in deze browser."
-        res.render("error.html", { message: message });
-    }
+app.get('/authenticate/:uuid', function(req, res) {
+    var base64 = req.params.uuid;
+    var decodedString = Base64.decode(base64);
     var upfail = req.session.messages;
     req.session.messages = "";
     //get uuid from database
     db.get("SELECT * FROM uuids WHERE uuid = ?", decodedString, function(err, row) {
         if (err) {
             console.log(err);
-            var message = "Er ging iets fout, probeer het opnieuw.";
+            var message = "Oeps, er ging iets niet helemaal goed! Deel deze code met ons zodat we je kunnen helpen: <b>" + decodedString + "</b>";
             res.render("error.html", { message: message });
         } else {
             if (row) {
@@ -585,7 +587,7 @@ app.get('/authenticate/', function(req, res) {
                 db.get("SELECT * FROM providers WHERE name = ?", provider, function(err, row) {
                     if (err) {
                         console.log(err);
-                        var message = "Kon provider niet vinden in database. Probeer het opnieuw.";
+                        var message = "Oeps, er ging iets niet helemaal goed, Probeer het later opnieuw!";
                         res.render("error.html", { message: message });
                     } else {
                         if (row) {
