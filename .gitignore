@@ -1,0 +1,6 @@
+.env
+node_modules
+database.db
+entree_creds.txt
+EduAuth.bsdesign
+views/home/EduAuth.bsdesign

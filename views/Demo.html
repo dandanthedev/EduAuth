@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - EduAuth</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/education.png&quot;) center / cover no-repeat;"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                                                <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user" style="color: rgb(0,0,0);font-size: 32px;"></i></div>
+                                                <div class="sidebar-brand-text mx-3"><span style="color: rgb(0,0,0);">EduAuth</span></div>
+                                            </a></h4>
+                                    </div>
+                                    <p class="text-center">Welkom bij de EduAuth demo!</p><div class="text-center">               
+<form id=eduauth action=https://eduauth.hosted.daanschenkel.nl/handshake method=POST>
+                        <input type=hidden name=env value=production>
+                        <input type=hidden name=provider value=Demo>
+                        <input type=hidden name=redirect value=https://eduauth.hosted.daanschenkel.nl/demo/success>
+                        <input class="btn btn-success btn-lg border rounded-0 ripple-effect" type=submit value="Inloggen Met EduAuth">
+                    </form>
+</div>
+                                    <div class="text-center"><a class="small" href="forgot-password.html"></a></div>
+                                    <div class="text-center"><a class="small" href="/register.html"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center"></p>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/script.min.js"></script>
+</body>
+
+</html>

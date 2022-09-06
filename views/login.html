@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <title>Login - EduAuth</title>
+    <link rel="stylesheet" href="/assets/bootstrap/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome-all.min.css">
+    <link rel="stylesheet" href="/assets/fonts/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/fonts/fontawesome5-overrides.min.css">
+    <link rel="stylesheet" href="/assets/css/styles.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izitoast/1.4.0/css/iziToast.min.css">
+</head>
+
+<body class="bg-gradient-primary">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-9 col-lg-12 col-xl-10">
+                <div class="card shadow-lg o-hidden border-0 my-5">
+                    <div class="card-body p-0">
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-flex">
+                                <div class="flex-grow-1 bg-login-image" style="background: url(&quot;/assets/img/education.png&quot;);background-size: cover;"></div>
+                            </div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h4 class="text-dark mb-4"><a class="navbar-brand d-flex justify-content-center align-items-center sidebar-brand m-0" href="#">
+                                                <div class="sidebar-brand-icon rotate-n-15"><i class="fas fa-user" style="color: rgb(0,0,0);font-size: 32px;"></i></div>
+                                                <div class="sidebar-brand-text mx-3"><span style="color: rgb(0,0,0);">EduAuth</span></div>
+                                            </a></h4>
+                                    </div><p class="text-center">Log in om door te gaan naar <%-provider %></p>
+                                    <form class="text-center" id="magiclogin" method="POST" action="/provider/magiclink">
+                                        <div class="mb-3"><input class="form-control" type="email" id="email" name="email" placeholder="Email" required=""></div>
+                                        <div class="mb-3"></div>
+                                        <div class="mb-3"><button class="btn btn-primary d-block w-100" id="magicsend" type="submit">Inloggen</button></div>
+                                    </form>
+                                    <form class="user">
+                                        <hr><a class="btn btn-primary d-block btn-google btn-user w-100 mb-2" role="button" href="/provider/google"><i class="fab fa-google"></i>&nbsp; Inloggen met Google Workspace</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button" style="background: #2C75E9;" href="/provider/microsoft"><i class="fab fa-microsoft"></i>&nbsp; Inloggen met Microsoft</a><a class="btn btn-primary d-block btn-facebook btn-user w-100" role="button" style="background: #2E3192;margin-top: 8px;" href="/provider/entree"><i class="fas fa-key"></i>&nbsp; Inloggen met Entree</a>
+                                        <hr>
+                                    </form>
+                                    <div class="text-center"><a class="small" href="forgot-password.html"></a></div><a href="https://pastebin.com/raw/EE5UHknR" target="_blank">Privacy Policy</a>
+                                    <div class="text-center"><a class="small" href="/register.html"></a></div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center"></p>
+    <script src="/assets/bootstrap/js/bootstrap.min.js"></script>
+    <script src="/assets/js/script.min.js"></script>
+</body>
+
+</html>
