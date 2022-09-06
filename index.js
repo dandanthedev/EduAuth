@@ -495,8 +495,7 @@ app.post('/handshake', function(req, res) {
                             res.cookie('uuid', uuid, options) // options is optional
 
                             //encode and redirect to authenticate route
-                            var encodedString = Base64.encode(uuid);
-                            var message = "Sessie wordt gestart!<br><noscript>Javascript moet aanstaan om het inlogproces te starten!</noscript><script>window.location.href = '/authenticate/" + encodedString + "'</script>";
+                            var message = "Sessie wordt gestart!<br><noscript>Javascript moet aanstaan om het inlogproces te starten!</noscript><script>window.location.href = '/authenticate/'</script>";
                             res.render("error.html", { message: message });
                             // res.redirect("/authenticate/" + encodedString);
                         }
@@ -561,14 +560,13 @@ app.get('/logout/:base64', function(req, res) {
     });
 
 });
-app.get("/authenticate", function(req, res) {
-    var message = "Sessie-id niet gevonden."
-    res.render("error.html", { message: message });
-});
 //authenticate route
-app.get('/authenticate/:uuid', function(req, res) {
-    var base64 = req.params.uuid;
-    var decodedString = Base64.decode(base64);
+app.get('/authenticate/', function(req, res) {
+    decodedString = req.signedCookies.uuid;
+    if (!decodedString) {
+        var message = "De cookie is verlopen. Controleer of je cookies accepteert in deze browser."
+        res.render("error.html", { message: message });
+    }
     var upfail = req.session.messages;
     req.session.messages = "";
     //get uuid from database
