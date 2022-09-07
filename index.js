@@ -214,12 +214,9 @@ app.get("/provider/failure", (req, res) => {
 
 app.use('/provider/entree', passport.authenticate('oidc'));
 
-app.use('/provider/entree/check',
-    passport.authenticate('oidc', { failureRedirect: '/provider/failure' }),
-    (req, res) => {
-        res.redirect('/redirect');
-    }
-);
+app.use('/provider/entree/check', function(req, res, next) {
+    res.redirect('/redirect')
+});
 app.get('/provider/entree/process',
     // wrap passport.authenticate call in a middleware function
     function(req, res, next) {
