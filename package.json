@@ -18,7 +18,7 @@
         "express-flash": "^0.0.2",
         "express-session": "^1.17.3",
         "nodemailer": "^6.7.8",
-        "nodemon": "^2.0.19",
+        "nodemon": "^3.0.0",
         "openid-client": "^5.1.9",
         "passport": "^0.6.0",
         "passport-google-oauth20": "^2.0.0",
