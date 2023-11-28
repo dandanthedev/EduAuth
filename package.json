@@ -20,7 +20,7 @@
         "nodemailer": "^6.7.8",
         "nodemon": "^2.0.19",
         "openid-client": "^5.1.9",
-        "passport": "^0.6.0",
+        "passport": "^0.7.0",
         "passport-google-oauth20": "^2.0.0",
         "passport-local": "^1.0.0",
         "passport-magic-link": "^2.1.0",
